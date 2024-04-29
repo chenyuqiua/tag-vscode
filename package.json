@@ -1,0 +1,89 @@
+{
+  "name": "tag-vscode",
+  "displayName": "tag-vscode",
+  "description": "",
+  "version": "0.0.1",
+  "publisher": "chenyq",
+  "engines": {
+    "vscode": "^1.56.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:vue",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "varlet.open-documentation",
+        "title": "Varlet: Open Varlet UI Documentation"
+      },
+      {
+        "command": "varlet.open-playground",
+        "title": "Varlet: Open Varlet UI Playground"
+      },
+      {
+        "command": "varlet.open-playground-by-selection",
+        "title": "Varlet: Open Varlet UI Playground By Selection"
+      },
+      {
+        "command": "varlet.open-playground-by-selection-and-wrap-template-tag",
+        "title": "Varlet: Open Varlet UI Playground By Selection And Wrap Template Tag"
+      },
+      {
+        "command": "varlet.open-webview",
+        "title": "Varlet: Open Webview"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "varlet.open-playground-by-selection",
+          "group": "navigation",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "varlet.open-playground-by-selection-and-wrap-template-tag",
+          "group": "navigation",
+          "when": "editorHasSelection"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "@varlet/shared": "workspace:*",
+    "@varlet/icons": "workspace:*",
+    "@varlet/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.56.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-cli": "^0.0.8",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
